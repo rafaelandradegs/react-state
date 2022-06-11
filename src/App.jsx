@@ -1,26 +1,30 @@
 import React, { useState } from 'react'
 
 export function App() {
-  // const [valor, setValor] = useState(10)
+  const [valor, setValor] = useState(100)
 
-  // function decremento() {
-  //   setValor(valor - 1)
-  // }
-  // function incremento() {
-  //   setValor(valor + 1)
-  // }
+  function diminuir() {
+    setValor(valor_antigo => valor_antigo - 1)
+  }
 
-  useState()
-  useState()
-  useState()
-  useState()
+  function aumentar() {
+    setValor(valor_antigo => valor_antigo + 1)
+  }
 
   return (
     <>
-      <h1>React Hooks</h1>
-      {/* <p>Valor: {valor}</p>
-      <button onClick={decremento}>Diminuir valor</button>
-      <button onClick={incremento}>Diminuir valor</button> */}
+      <h1>React Hooks - useState</h1>
+      <button onClick={diminuir}>Diminuir</button>
+      <span> Valor: {valor} </span>
+      <button onClick={aumentar}>Aumentar</button>
+
+      <button
+        onClick={() => {
+          setValor(valor + 10)
+        }}
+      >
+        Aumentar_v2
+      </button>
     </>
   )
 }
