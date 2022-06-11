@@ -1,7 +1,20 @@
 import React, { useState } from 'react'
 
 export function App() {
-  const [valor, setValor] = useState(100)
+  function definirValor() {
+    console.log('funcao sendo chamado')
+    return 1000
+  }
+
+  const [valor, setValor] = useState(definirValor)
+  // const [valor, setValor] = useState(() => {
+  //   console.log('sendo chamado')
+  //   return 1000
+  // })
+  // const [valor, setValor] = useState(() => {
+  //   console.log('sendo chamado')
+  //   return 1000
+  // })
 
   function diminuir() {
     setValor(valor_antigo => valor_antigo - 1)
