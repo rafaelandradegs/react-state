@@ -1,43 +1,32 @@
 import React, { useState } from 'react'
 
 export function App() {
-  function definirValor() {
-    console.log('funcao sendo chamado')
-    return 1000
-  }
-
-  const [valor, setValor] = useState(definirValor)
-  // const [valor, setValor] = useState(() => {
-  //   console.log('sendo chamado')
-  //   return 1000
-  // })
-  // const [valor, setValor] = useState(() => {
-  //   console.log('sendo chamado')
-  //   return 1000
+  // const [player, setPlayer] = useState({
+  //   name: 'Joao',
+  //   score: 0
   // })
 
-  function diminuir() {
-    setValor(valor_antigo => valor_antigo - 1)
-  }
+  const [playerName, setPlayerName] = useState(() => {
+    return 'Rafael'
+  })
 
-  function aumentar() {
-    setValor(valor_antigo => valor_antigo + 1)
+  const [playerScore, setPlayerScore] = useState(() => {
+    return 0
+  })
+
+  function alterar() {
+    setPlayerScore(playerScore => {
+      return playerScore + 1
+    })
   }
 
   return (
     <>
-      <h1>React Hooks - useState</h1>
-      <button onClick={diminuir}>Diminuir</button>
-      <span> Valor: {valor} </span>
-      <button onClick={aumentar}>Aumentar</button>
-
-      <button
-        onClick={() => {
-          setValor(valor + 10)
-        }}
-      >
-        Aumentar_v2
-      </button>
+      <h1>React Hooks -useState</h1>
+      <hr />
+      <h3>Nome: {playerName}</h3>
+      <h3>Pontos: {playerScore}</h3>
+      <button onClick={alterar}>Score</button>
     </>
   )
 }
