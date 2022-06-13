@@ -1,46 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { User } from './components/User'
+import './style.css'
 
-export function App() {
-  const clientes = ['Joao', 'Ana', 'Carlos']
-  const produtos = ['Pao', 'Manteiga', 'Leite']
-  const vendas = ['1 x Pao (Joao)', '2 x Manteiga (Ana)', '3 x Leite (Carlos)']
-
-  const [info, setInfo] = useState('clientes')
-  const [valor, setValor] = useState(100)
+export const App = () => {
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
-    // console.clear()
-    switch (info) {
-      case 'clientes':
-        console.table(clientes)
-        break
-
-      case 'produtos':
-        console.table(produtos)
-        break
-
-      case 'vendas':
-        console.table(vendas)
-        break
-    }
-  }, [info])
-
-  useEffect(() => {
-    console.log('Teste')
-  }, [valor])
+    fetch('https://dummyjson.com/users')
+      .then(response => response.json())
+      .then(json => {
+        setUsers(json.users)
+      })
+  }, [])
 
   return (
     <>
-      <h1>React Hooks - useEffect</h1>
-      <hr />
-      <button onClick={() => setInfo('clientes')}>Cliente</button>
-      <button onClick={() => setInfo('produtos')}>Produtos</button>
-      <button onClick={() => setInfo('vendas')}>Vedas</button>
-      <h3>{info}</h3>
-
-      <h3>{valor}</h3>
-
-      <button onClick={() => setValor(valor + 10)}>Almentar</button>
+      <h1>Lista de nomes</h1>
+      {users.map(user => {
+        return <User user={user} key={user.id} />
+      })}
     </>
   )
 }
