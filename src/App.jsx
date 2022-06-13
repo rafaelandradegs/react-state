@@ -1,32 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export function App() {
-  // const [player, setPlayer] = useState({
-  //   name: 'Joao',
-  //   score: 0
-  // })
-
-  const [playerName, setPlayerName] = useState(() => {
-    return 'Rafael'
-  })
-
-  const [playerScore, setPlayerScore] = useState(() => {
-    return 0
-  })
+  const [valor, setValor] = useState(100)
+  const [valor2, setValor2] = useState(1000)
 
   function alterar() {
-    setPlayerScore(playerScore => {
-      return playerScore + 1
-    })
+    setValor(valor + 10)
   }
+
+  function alterar2() {
+    setValor2(valor2 + 10)
+  }
+
+  useEffect(() => {
+    console.log('alterar')
+  }, [valor2])
 
   return (
     <>
-      <h1>React Hooks -useState</h1>
-      <hr />
-      <h3>Nome: {playerName}</h3>
-      <h3>Pontos: {playerScore}</h3>
-      <button onClick={alterar}>Score</button>
+      <h1>React Hooks - useEffect</h1>
+      <h3>Valor: {valor}</h3>
+      <button onClick={alterar}>Alterar</button>
+      <button onClick={alterar2}>Alterar2</button>
     </>
   )
 }
