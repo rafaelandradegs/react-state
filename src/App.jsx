@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { User } from './components/User'
-import './style.css'
+import React, { useRef, useState, useEffect } from 'react'
 
-export const App = () => {
-  const [users, setUsers] = useState([])
+export function App() {
+  const [texto, setTexto] = useState('')
+  const total = useRef(0)
 
   useEffect(() => {
-    fetch('https://dummyjson.com/users')
-      .then(response => response.json())
-      .then(json => {
-        setUsers(json.users)
-      })
-  }, [])
+    total.current++
+  })
 
   return (
     <>
-      <h1>Lista de nomes</h1>
-      {users.map(user => {
-        return <User user={user} key={user.id} />
-      })}
+      <h1>React Hooks - useRef</h1>
+      <hr />
+      <input
+        type="text"
+        value={texto}
+        onChange={e => {
+          setTexto(e.target.value)
+        }}
+      />
+      <hr />
+      <p>O texto digitado e: {texto}</p>
+      <hr />
+      <p>Total: {total.current}</p>
     </>
   )
 }
