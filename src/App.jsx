@@ -1,24 +1,14 @@
-import React, { useId } from 'react'
+import React from 'react'
+import { Componente1, Componente2, Componente3 } from './Componentes'
 
 export function App() {
-  const id1 = useId()
-  const id2 = useId()
-
   return (
     <>
-      <h1>React - useId</h1>
+      <h2>React - Multiplos componentes no mesmo ficheiro</h2>
       <hr />
-      <form action="#" method="post">
-        <div>
-          <input type="checkbox" name="checkbox1" id={id1} />
-          <label htmlFor={id1}>CheckBox 1</label>
-        </div>
-        <hr />
-        <div>
-          <input type="checkbox" name="checkbox2" id={id2} />
-          <label htmlFor={id2}>CheckBox 2</label>
-        </div>
-      </form>
+      <Componente1 />
+      <Componente2 />
+      <Componente3 />
     </>
   )
 }
