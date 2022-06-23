@@ -2,19 +2,15 @@ import React, { useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 export function App() {
-  const [tabuada, setTabuada] = useState(() => {
-    return 0
-  })
+  const [valor, setValor] = useState(1)
 
-  const [resultadoTabuada, setResultadoTabuada] = useState(() => {
-    return []
-  })
-
-  function calculaTabuada() {
-    setResultadoTabuada([])
-    for (let i = 0; i <= 10; i++) {
-      setResultadoTabuada(old => [...old, { equacao: tabuada * i, id: uuid() }])
+  const multiplicar = () => {
+    if (isNaN(valor)) return []
+    let produtos = []
+    for (let i = 1; i <= 10; i++) {
+      produtos.push(`${valor} X ${i} = ${valor * i}`)
     }
+    return produtos
   }
 
   return (
@@ -23,19 +19,13 @@ export function App() {
       <hr />
       <input
         type="number"
-        value={tabuada}
+        value={valor}
         onChange={e => {
-          setTabuada(e.target.value)
+          setValor(parseInt(e.target.value))
         }}
       />
-      <button onClick={calculaTabuada}>Calcular</button>
-
-      {resultadoTabuada.map(tabuada => {
-        return (
-          <p key={tabuada.id}>
-            {tabuada.equacao} uuid: {tabuada.id}
-          </p>
-        )
+      {multiplicar().map(produto => {
+        return <p key={uuid()}>{produto}</p>
       })}
     </div>
   )
