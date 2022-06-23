@@ -1,14 +1,14 @@
 import React from 'react'
-import { Componente1, Componente2, Componente3 } from './Componentes'
 
 export function App() {
   return (
     <>
-      <h2>React - Multiplos componentes no mesmo ficheiro</h2>
+      <h2>React - Adicionar o Bootstrap ao projetos</h2>
       <hr />
-      <Componente1 />
-      <Componente2 />
-      <Componente3 />
+      <a href="#" className="btn btn-primary">
+        Botao bootstrap
+      </a>
+      <div className="alert alert-success">Salvo com sucesso</div>
     </>
   )
 }
