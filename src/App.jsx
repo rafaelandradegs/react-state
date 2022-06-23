@@ -1,32 +1,45 @@
-import React, { useState } from 'react'
-import { v4 as uuid } from 'uuid'
+import React, { useState, useCallback } from 'react'
+import { Lista } from './Lista'
 
 export function App() {
-  const [valor, setValor] = useState(1)
+  const [numero, setNumero] = useState(() => {
+    return 100
+  })
+  const [temaEscuro, setTemaEscuro] = useState(() => {
+    return false
+  })
 
-  const multiplicar = () => {
-    if (isNaN(valor)) return []
-    let produtos = []
-    for (let i = 1; i <= 10; i++) {
-      produtos.push(`${valor} X ${i} = ${valor * i}`)
-    }
-    return produtos
+  const tema = {
+    background: temaEscuro ? 'black' : 'white',
+    color: temaEscuro ? 'white' : 'black',
+    height: '100vh'
   }
 
+  const resultados = useCallback(() => {
+    return [numero * 2, numero * 3, numero * 4]
+  }, [numero])
+
   return (
-    <div>
-      <h1>React - Tabuada</h1>
+    <div style={tema}>
+      <h1>REACT - useCallback</h1>
       <hr />
-      <input
-        type="number"
-        value={valor}
-        onChange={e => {
-          setValor(parseInt(e.target.value))
+      <button
+        onClick={() => {
+          setTemaEscuro(!temaEscuro)
         }}
-      />
-      {multiplicar().map(produto => {
-        return <p key={uuid()}>{produto}</p>
-      })}
+      >
+        Alterar Tema
+      </button>
+      <p>Numero: {numero}</p>
+      <button
+        onClick={() => {
+          setNumero(numero + 1)
+        }}
+      >
+        Incrementar
+      </button>
+      <hr />
+      <Lista resultados={resultados} />
     </div>
   )
 }
